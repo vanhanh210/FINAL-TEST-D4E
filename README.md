@@ -22,6 +22,7 @@ The data includes the following main columns:
 This data table allows Retail SuperMart to analyze and generate insights into their business operations, understand customer buying trends, identify product categories that generate the highest revenue and profit, and make informed and effective business decisions.
 ### Objectives
 1. Retrieve information about Order ID, Product ID, Customer ID, and Quantity of the rows that meet the condition where Ship Mode is "Standard Class."
+- SQL
 ````sql
 SELECT 
     Order_ID, Product_ID, Customer_ID, Quantity
@@ -29,12 +30,41 @@ FROM `sales`
 WHERE 
     Ship_Mode = 'Standard Class';
 ````
+- Python
+````python
+# Read the csv file
+df = pd.read_csv("sales.csv")
+
+# Get information of rows where Ship Mode is "Standard Class"
+filtered_data = df[df["Ship Mode"] == "Standard Class"][["Order ID", "Product ID", "Customer ID", "Quantity"]]
+
+#Print the result
+print(filtered_data)
+````
+
 2. Retrieve information about the Order IDs of the rows that meet the condition where the Product ID belongs to the "Office Supplies" category and has a quantity greater than 3.
+- SQL
 ````sql
 FROM `personal-project-374607.sales.sales`
 WHERE  Category = 'Office Supplies' AND Quantity > 3;
 ````
+- Python
+````python
+import pandas as pd
+# Read the csv file into DataFrame
+df = pd.read_csv('sales.csv')
+
+#Filter rows that meet the condition
+condition = (df['Category'] == 'Office Supplies') & (df['Quantity'] > 3)
+filtered_df = df.loc[condition]
+# Get information about all order IDs
+order_ids = filtered_df['Order ID'].unique()
+
+#Print the result
+print(order_ids)
+````
 3. Perform a statistical analysis that includes the count of Order IDs, the count of unique product IDs, the total sales, and the total profit for each product Category, sorted in descending order of total sales.
+- SQL
 ````sql
 SELECT 
     Category,
@@ -45,6 +75,25 @@ SELECT
 FROM `sales`
 GROUP BY Category
 ORDER BY SUM(Sales) DESC;
+````
+- Python 
+````python
+import pandas as pd
+
+# Read the sales data from CSV file
+sales = pd.read_csv('sales.csv')
+
+# group by category and calculate statistics
+stats = sales.groupby('Category').agg(
+    Number_of_Orders=('Order ID', 'nunique'),
+    Number_of_Products=('Product ID', 'nunique'),
+    Total_Sales=('Sales', 'sum'),
+    Total_Profit=('Profit', 'sum')
+).reset_index()
+
+# sort the result by Total_Sales in descending order
+stats = stats.sort_values('Total_Sales', ascending=True)
+print(stats)
 ````
 4. For each Ship mode, retrieve customer information (Customer ID) and the number of orders for each customer, considering the Ship mode in question, such that the customer has the highest number of orders in that Ship mode.
 ````sql
