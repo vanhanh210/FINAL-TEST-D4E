@@ -4,6 +4,22 @@
 
 ### Situation
 In a retail company named "Retail SuperMart," sales data is collected and stored in a table called sales.csv. This table contains information about orders, products, and customers that the business has recorded over a specific period.
+
+The data includes the following main columns:
+
+- Order ID: Order identifier - This is a unique code assigned to each order when a customer purchases a product.
+- Order Date (dd/MM/yyyy): Order date - This is the date when the customer placed the order.
+- Ship Date: Shipping date - This is the date when the product is delivered to the customer's address.
+- Ship Mode: Shipping method - It represents the transportation mode used to deliver the product to the customer (e.g., Standard Class, Express, Second Day, Overnight).
+- Customer ID: Customer identifier - This is a unique code assigned to each customer.
+- Product ID: Product identifier - This is a unique code assigned to each product sold in the store.
+- Category: Product category - This is the main group that classifies the products (e.g., Electronics, Office Supplies, Home Appliances).
+- Sub-category: Product sub-category - This provides further classification of products within each main category (e.g., Laptops, Pens, Lighting).
+- Quantity: Product quantity - The quantity of the product ordered by the customer in each order.
+- Sale: Sales revenue - The total value of the order based on the selling price of the product and the quantity purchased.
+- Profit: Profit - The profit obtained from each order after deducting related costs (e.g., production costs, shipping costs).
+
+This data table allows Retail SuperMart to analyze and generate insights into their business operations, understand customer buying trends, identify product categories that generate the highest revenue and profit, and make informed and effective business decisions.
 ### Objectives
 1. Retrieve information about Order ID, Product ID, Customer ID, and Quantity of the rows that meet the condition where Ship Mode is "Standard Class."
 ````sql
